@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Longitud de Láminas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Calculadora de Longitud de Láminas</h1>
+  <form id="calculatorForm">
+    <div>
+      <label for="ladoMayor">Lado Mayor de la Lámina (metros):</label>
+      <input type="text" id="ladoMayor" required>
+    </div>
+    <div>
+      <label for="ladoMenor">Lado Menor de la Lámina (metros):</label>
+      <input type="text" id="ladoMenor" required>
+    </div>
+
+    <div>
+      <label for="cantidadLaminas">Cantidad de Láminas:</label>
+      <input type="number" id="cantidadLaminas" required>
+    </div>
+    <button type="submit">Calcular</button>
+  </form>
+
+ <div id="resultados">
+  <h2>Longitudes de las Láminas:</h2>
+  <ul id="listaLongitudes">
+    <!-- Las longitudes se agregarán aquí dinámicamente -->
+  </ul>
+</div>
+
+
+<h2 class="titulo2">Ingresar Medidas y Cantidades de Láminas</h2>
+<div id="inputTableContainer">
+  <table id="inputTable">
+    <tr>
+      <th>Medida (metros)</th>
+      <th>Cantidad</th>
+    </tr>
+    <!-- Las filas de la tabla se agregarán aquí dinámicamente -->
+  </table>
+</div>
+
+<div class="botones">
+<button class="boton1" onclick="agregarFila()">Agregar Fila</button>
+<button class="boton2" onclick="ordenarMedidas()">Ordenar y Mostrar Resumen</button>
+</div>
+
+
+<h2>Resumen de Medidas de Láminas</h2>
+<div id="outputTableContainer">
+  <table id="outputTable">
+    <tr>
+      <th>Medida (metros)</th>
+      <th>Cantidad</th>
+    </tr>
+    <!-- Las filas del resumen se agregarán aquí dinámicamente -->
+  </table>
+</div>
+
+
+
+  <script src="./main.js"></script>
+</body>
+</html>
+
+
