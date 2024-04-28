@@ -7,42 +7,54 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="logo">
+    <img src="/images.png" alt="">
+  </div>
   <div class="contenedor">
     <div class="imagen">
     </div>
   </div>
-  <h1>Calculadora de Longitud de Láminas</h1>
+  <h1>Simplifica tus pedidos con nuestra calculadora</h1>
+  <div class="intro">
+  <h2>TECHOS CON LADOS DESIGUALES</h2>
+  <div class="expli">
+    <div class="imgex">
+          <img src="/PhotoRoom-20240428_095058.png" alt="">
+    </div>
+  </div>
+  </div>
   <form id="calculatorForm">
     <div>
-      <label for="ladoMayor">Lado Mayor de la Lámina (metros):</label>
+      <label for="ladoMayor">Lado Mayor(X):</label>
       <input type="text" id="ladoMayor" required>
     </div>
     <div>
-      <label for="ladoMenor">Lado Menor de la Lámina (metros):</label>
+      <label for="ladoMenor">Lado Menor(Y):</label>
       <input type="text" id="ladoMenor" required>
     </div>
 
     <div>
-      <label for="cantidadLaminas">Cantidad de Láminas:</label>
+      <label for="cantidadLaminas">Cantidad de Láminas(Z):</label>
       <input type="number" id="cantidadLaminas" required>
     </div>
     <button type="submit">Calcular</button>
   </form>
 
  <div id="resultados">
-  <h2>Longitudes de las Láminas:</h2>
+  <h2>LAMINAS:</h2>
   <ul id="listaLongitudes">
     <!-- Las longitudes se agregarán aquí dinámicamente -->
   </ul>
 </div>
 
+<h2 class="segun">SUMAR Y ORDENAR MEDIDAS</h2>
+<P>ESTO ES PARA CUANDO SE TENGAN VARIAS MEDIDAS O SE REPITEN</P>
 
-<h2 class="titulo2">Ingresar Medidas y Cantidades de Láminas</h2>
 <div id="inputTableContainer">
   <table id="inputTable">
     <tr>
-      <th>Medida (metros)</th>
-      <th>Cantidad</th>
+      <th>CANTIDAD</th>
+      <th>MEDIDA(M)</th>
     </tr>
     <!-- Las filas de la tabla se agregarán aquí dinámicamente -->
   </table>
@@ -50,7 +62,7 @@
 
 <div class="botones">
 <button class="boton1" onclick="agregarFila()">Agregar Fila</button>
-<button class="boton2" onclick="ordenarMedidas()">Ordenar y Mostrar Resumen</button>
+<button class="boton2" onclick="ordenarMedidas()">Ordenar y Mostrar</button>
 </div>
 
 
@@ -58,8 +70,8 @@
 <div id="outputTableContainer">
   <table id="outputTable">
     <tr>
-      <th>Medida (metros)</th>
-      <th>Cantidad</th>
+      <th>CANTIDAD</th>
+      <th>MEDIDA</th>
     </tr>
     <!-- Las filas del resumen se agregarán aquí dinámicamente -->
   </table>

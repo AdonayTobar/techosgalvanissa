@@ -54,63 +54,70 @@ function calcularLongitudesLaminas(ladoMayor, ladoMenor, cantidadLaminas) {
 
 
 
-// // Función para agregar una fila a la tabla de entrada
- function agregarFila() {
-   const table = document.getElementById("inputTable");
-   const newRow = table.insertRow(-1);
-   const cell1 = newRow.insertCell(0);
-   const cell2 = newRow.insertCell(1);
-   cell1.innerHTML = '<input type="number" step="0.01" min="0" required>';
-   cell2.innerHTML = '<input type="number" min="0" required>';
- }
-
-
-
+// Función para agregar una fila a la tabla de entrada
+function agregarFila() {
+  const table = document.getElementById("inputTable");
+  const newRow = table.insertRow(-1);
+  const cell1 = newRow.insertCell(0);
+  const cell2 = newRow.insertCell(1);
+  cell1.innerHTML = '<input type="number" min="0" required>'; // Input para cantidad
+  cell2.innerHTML = '<input type="number" step="0.01" min="0" required>'; // Input para medida
+}
 
 // Función para ordenar las medidas y mostrar el resumen
 function ordenarMedidas() {
   const inputTable = document.getElementById("inputTable");
   const outputTable = document.getElementById("outputTable");
   const measuresMap = new Map();
+  let totalMetros = 0;
 
   // Resetear la tabla de salida
-  outputTable.innerHTML = "<tr><th>Medida (metros)</th><th>Cantidad</th></tr>";
+  outputTable.innerHTML = "<tr><th>Cantidad</th><th>Medida (metros)</th></tr>";
 
   // Recorrer las filas de la tabla de entrada y agrupar las medidas
   for (let i = 1; i < inputTable.rows.length; i++) {
     const cells = inputTable.rows[i].cells;
-    const measureInput = cells[0].querySelector('input');
-    const quantityInput = cells[1].querySelector('input');
+    const quantityInput = cells[0].querySelector('input');
+    const measureInput = cells[1].querySelector('input');
 
     // Verificar si existen los inputs y tienen valores
-    if (measureInput && measureInput.value && quantityInput && quantityInput.value) {
-      const measure = parseFloat(measureInput.value);
+    if (quantityInput && quantityInput.value && measureInput && measureInput.value) {
       const quantity = parseInt(quantityInput.value);
+      const measure = parseFloat(measureInput.value);
 
       // Verificar si los valores son válidos antes de agregarlos al mapa de medidas
-      if (!isNaN(measure) && !isNaN(quantity)) {
+      if (!isNaN(quantity) && !isNaN(measure)) {
         if (measuresMap.has(measure)) {
           measuresMap.set(measure, measuresMap.get(measure) + quantity);
         } else {
           measuresMap.set(measure, quantity);
         }
+        totalMetros += quantity * measure; // Calcular total de metros
       }
     }
   }
 
+  // Obtener las medidas del Map y ordenarlas
+  const sortedMeasures = Array.from(measuresMap.keys()).sort((a, b) => a - b);
 
-// Obtener las medidas del Map y ordenarlas
-const sortedMeasures = Array.from(measuresMap.keys()).sort((a, b) => a - b);
+  // Recorrer las medidas ordenadas y agregarlas a la tabla de salida
+  sortedMeasures.forEach(measure => {
+    const quantity = measuresMap.get(measure);
+    const newRow = outputTable.insertRow(-1);
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    cell1.textContent = quantity;
+    cell2.textContent = measure.toFixed(2);
+  });
 
-// Recorrer las medidas ordenadas y agregarlas a la tabla de salida
-sortedMeasures.forEach(measure => {
-  const quantity = measuresMap.get(measure);
-  const newRow = outputTable.insertRow(-1);
-  const cell1 = newRow.insertCell(0);
-  const cell2 = newRow.insertCell(1);
-  cell1.textContent = measure.toFixed(2);
-  cell2.textContent = quantity;
-});
+  // Agregar fila para mostrar el total de metros
+  const totalRow = outputTable.insertRow(-1);
+  const totalCell1 = totalRow.insertCell(0);
+  const totalCell2 = totalRow.insertCell(1);
+  totalCell1.textContent = "Total:";
+  totalCell2.textContent = totalMetros.toFixed(2) + " m";
+
+
 
 }
 
