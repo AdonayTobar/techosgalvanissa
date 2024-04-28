@@ -118,8 +118,16 @@ function ordenarMedidas() {
   totalCell2.textContent = totalMetros.toFixed(2) + " m";
 
 
-
 }
+
+// Selecciona el h3 por su ID
+  const enlace = document.getElementById('porta');
+
+  // Agrega un evento de clic al h3
+  enlace.addEventListener('click', function() {
+    // Redirige al usuario a otra página web
+    window.location.href = 'https://adonaytobar.github.io/Adonayportafolio.github.io/';
+  });
 
 
 
